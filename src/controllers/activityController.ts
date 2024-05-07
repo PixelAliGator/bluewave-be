@@ -5,7 +5,7 @@ async function getSwimmingActivity(req: Request, res: Response, next: NextFuncti
             const activties:swimmingType[] = await swimmingTable.find({});
             res.json(activties);
         }
-        else if (activityId) {
+        else if (!activityId) {
             const id = req.currentUser.id;
             const activties:swimmingType[] = await swimmingTable.find({});
             activties.filter((activty) => activty.user_id === id);
