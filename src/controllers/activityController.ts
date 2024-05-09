@@ -72,3 +72,4 @@ export default {
   getSwimmingActivity,
   updateSwimmingActivity,
   deleteSwimmingActivity
+}
