@@ -28,6 +28,7 @@ async function getSwimmingActivity(req: Request, res: Response, next: NextFuncti
           res.json(activties);
       }
       else if (activityId) {
+        //@ts-ignore
           const id = req.currentUser.id;
           const activties:swimmingType[] = await swimmingTable.find({});
           activties.filter((activty) => activty.user_id === id);
