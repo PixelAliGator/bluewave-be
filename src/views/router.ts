@@ -1,8 +1,9 @@
 import express from 'express'
 import activityController from '../controllers/activityController'
-import secureRoute from '../middleware/secureRoute'
 import goalsController from '../controllers/goalsController'
 import userController from '../controllers/userController'
+import secureRoute from '../middleware/secureRoute'
+
 const router = express.Router()
 
 router.route('/login')
@@ -10,6 +11,7 @@ router.route('/login')
 
 router.route('/register')
 .post(userController.register)
+
 
 router.route('/activity')
   .delete(secureRoute, activityController.deleteSwimmingActivity)
