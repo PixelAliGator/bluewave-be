@@ -5,7 +5,10 @@ import { NotValid } from "../lib/errors";
 import jwt from "jsonwebtoken";
 import { secret } from "../config/enviorment";
 
+
+
 import userProfileModel from "../models/userProfileModel";
+
 
 
 
@@ -108,3 +111,4 @@ async function login(req: Request, res: Response, next: NextFunction) {
     updateUserProfile
 
   }
+
