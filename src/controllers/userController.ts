@@ -10,7 +10,6 @@ import userProfileModel from "../models/userProfileModel";
 
 
 
-
 //! Register a user
 async function register(req: Request, res: Response, next: NextFunction) {
   try {
@@ -21,6 +20,7 @@ async function register(req: Request, res: Response, next: NextFunction) {
     next(e)
   }
 }
+
 
 
 //!Login registered user
@@ -66,6 +66,10 @@ async function login(req: Request, res: Response, next: NextFunction) {
     }
   }
 
+  export default{
+    login,
+    register
+  }
 
 
   export default{
@@ -116,5 +120,3 @@ async function login(req: Request, res: Response, next: NextFunction) {
     updateUserProfile
 
   }
-
-

@@ -3,9 +3,14 @@ import activityController from '../controllers/activityController'
 import goalsController from '../controllers/goalsController'
 import userController from '../controllers/userController'
 
+import secureRoute from '../middleware/secureRoute'
+
 const router = express.Router()
 
 router.route('/login')
+
+
+
 .post(userController.login)
 
 import secureRoute from '../middleware/secureRoute'
@@ -14,7 +19,7 @@ import productController from '../controllers/productController'
 
 import { createCheckoutSession } from '../lib/stripe'
 
-const router = express.Router()
+
 
 router.route('/user')
   .put(secureRoute, userController.updateUserProfile)
