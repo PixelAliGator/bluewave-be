@@ -22,7 +22,7 @@ userSchema.pre('validate', function checkPassword(next) {
 //! Hash the password
 userSchema.pre('save', async function encryptPassword(next) {
     if (this.isModified('password')) {
-      console.log('Hashing password'); // Debug log
+
       try {
         const salt = await bcrypt.genSaltSync();
         this.password = await bcrypt.hashSync(this.password, salt);
