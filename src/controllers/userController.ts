@@ -4,7 +4,10 @@ import { userSchemaType } from "../models/userModel";
 import { NotValid } from "../lib/errors";
 import jwt from "jsonwebtoken";
 import { secret } from "../config/enviorment";
+
 import userProfileModel from "../models/userProfileModel";
+
+
 
 //! Register a user
 async function register(req: Request, res: Response, next: NextFunction) {
@@ -60,6 +63,7 @@ async function login(req: Request, res: Response, next: NextFunction) {
     }
   }
 
+
   async function createUserProfile(req: Request, res: Response, next: NextFunction) {
     try {
       //@ts-ignore
@@ -102,4 +106,5 @@ async function login(req: Request, res: Response, next: NextFunction) {
     createUserProfile,
     getUserProfile,
     updateUserProfile
+
   }

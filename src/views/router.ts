@@ -8,16 +8,15 @@ import { createCheckoutSession } from '../lib/stripe'
 
 const router = express.Router()
 
-router.route('/login')
-  .post(userController.login)
-
-router.route('/register')
-  .post(userController.register)
-
 router.route('/user')
   .put(secureRoute, userController.updateUserProfile)
   .get(secureRoute, userController.getUserProfile)
   .post(secureRoute, userController.createUserProfile)
+
+.post(userController.login)
+
+router.route('/register')
+.post(userController.register)
 
 
 router.route('/activity')
@@ -32,13 +31,14 @@ router.route('/goal')
   .post(secureRoute, goalsController.createGoal)
   .put(secureRoute, goalsController.updateGoal)
 
-router.route('/product')
-  .get(productController.getProduct)
-  .post(secureRoute, productController.addProduct)
-  .delete(secureRoute, productController.deleteProduct)
-
-
 router.route('/checkout')
   .post(createCheckoutSession)
+
+  router.route('/product')
+  .get(productController.getProduct)
+  .post(secureRoute,productController.addProduct)
+  .delete(secureRoute,productController.deleteProduct)
+
+
 
 export default router
