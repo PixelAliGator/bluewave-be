@@ -8,6 +8,9 @@ const router = express.Router()
 router.route('/login')
 .post(userController.login)
 
+router.route('/register')
+.post(userController.register)
+
 router.route('/activity')
   .delete(secureRoute, activityController.deleteSwimmingActivity)
   .post(secureRoute, activityController.createSwimmingActivity)

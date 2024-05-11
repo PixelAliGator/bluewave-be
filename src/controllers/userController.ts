@@ -61,5 +61,6 @@ async function login(req: Request, res: Response, next: NextFunction) {
 
 
   export default{
-    login
+    login,
+    register
   }
