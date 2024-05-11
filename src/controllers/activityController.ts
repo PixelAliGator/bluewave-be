@@ -1,3 +1,26 @@
+import { NextFunction, Request, Response } from 'express';
+import swimmingTable, { swimmingType } from '../models/swimmingModel';
+import { CurrentUser } from '../models/userModel';
+
+
+
+interface ExtendedRequest extends Request{
+    currentUser: CurrentUser;
+}
+
+async function createSwimmingActivity(req: Request, res: Response, next: NextFunction) {
+    try {
+        console.log(req.body);
+        const activityData: swimmingType = req.body;
+        activityData.createdAt = new Date();
+        activityData.updatedAt = new Date();
+        const newActivity = await swimmingTable.create(activityData);
+        res.status(201).json(newActivity)
+    } catch (e) {
+        next(e)
+    }
+}
+
 
 async function getSwimmingActivity(req: Request, res: Response, next: NextFunction) {
     try {
@@ -6,7 +29,7 @@ async function getSwimmingActivity(req: Request, res: Response, next: NextFuncti
             const activties:swimmingType[] = await swimmingTable.find({});
             res.json(activties);
         }
-        else if (!activityId) {
+        else if (activityId) {
             const id = req.currentUser.id;
             const activties:swimmingType[] = await swimmingTable.find({});
             activties.filter((activty) => activty.user_id === id);
@@ -17,24 +40,39 @@ async function getSwimmingActivity(req: Request, res: Response, next: NextFuncti
         }
 
     } catch (e) {
-        next(e)
-    }
+        next(e)
+    }
 }
 
-async function createSwimmingActivity(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
-  try {
-    console.log(req.body);
-    const activityData: swimmingType = req.body;
-    activityData.createdAt = new Date();
-    activityData.updatedAt = new Date();
-    const newActivity = await swimmingTable.create(activityData);
-    res.status(201).json(newActivity);
-  } catch (e) {
-    next(e);
-  }
+
+async function updateSwimmingActivity(req: Request, res: Response, next: NextFunction) {
+    try {
+        const activityData: swimmingType = req.body;
+        activityData.updatedAt = new Date(0);
+        const activty = await swimmingTable.findByIdAndUpdate(activityData._id, activityData)
+        res.json(activty)
+    } catch (e) {
+        next(e)
+    }
 }
 
+
+async function deleteSwimmingActivity(req: Request, res: Response, next: NextFunction) {
+    try {
+        let activityId = req.body.id
+        if(!activityId){
+           activityId = req.query.id;
+        }
+        await swimmingTable.findByIdAndDelete(activityId)
+        res.status(200).json(`Deleted ${activityId}`)
+    } catch (e) {
+        next(e)
+    }
+}
+
+export default {
+    createSwimmingActivity,
+    getSwimmingActivity,
+    updateSwimmingActivity,
+    deleteSwimmingActivity
+}
