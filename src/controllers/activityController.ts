@@ -23,6 +23,7 @@ async function createSwimmingActivity(req: Request, res: Response, next: NextFun
 
 
 async function getSwimmingActivity(req: Request, res: Response, next: NextFunction) {
+
     try {
         const activityId = req.query.id;
         if(activityId === '*'){
@@ -40,6 +41,7 @@ async function getSwimmingActivity(req: Request, res: Response, next: NextFuncti
             res.json(activty)
         }
 
+  
     } catch (e) {
         next(e)
     }
