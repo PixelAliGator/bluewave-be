@@ -6,6 +6,7 @@ import { NextFunction, Request, Response } from 'express'
 import userProfileModel from '../models/userProfileModel'
 
 
+
 async function createUserProfile(req: Request, res: Response, next: NextFunction) {
   try {
     //@ts-ignore
