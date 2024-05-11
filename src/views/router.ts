@@ -4,6 +4,7 @@ import goalsController from '../controllers/goalsController'
 import userController from '../controllers/userController'
 import secureRoute from '../middleware/secureRoute'
 import productController from '../controllers/productController'
+import { createCheckoutSession } from '../lib/stripe'
 
 const router = express.Router()
 
@@ -30,5 +31,9 @@ router.route('/activity')
   .get(productController.getProduct)
   .post(secureRoute,productController.addProduct)
   .delete(secureRoute,productController.deleteProduct)
+
+
+  router.route('/checkout')
+    .post(createCheckoutSession)
 
 export default router
