@@ -88,7 +88,6 @@ async function login(req: Request, res: Response, next: NextFunction) {
 
 export default {
   login,
-  register,
   createUserProfile,
   getUserProfile,
   updateUserProfile,
