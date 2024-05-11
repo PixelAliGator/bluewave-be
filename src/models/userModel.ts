@@ -2,7 +2,7 @@ import mongoose, { Model } from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
 import mongooseHidden from 'mongoose-hidden';
 import bcrypt from 'bcrypt';
-import userSchema from '../schemas/userSchemas';
+import userSchema from '../schemas/userSchema';
 import { IUser } from "../types/UserI";
 
 //! Virtual password
