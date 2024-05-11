@@ -2,13 +2,15 @@ import express from 'express'
 import activityController from '../controllers/activityController'
 import goalsController from '../controllers/goalsController'
 import userController from '../controllers/userController'
-import secureRoute from '../middleware/secureRoute'
-import productController from '../controllers/productController'
-
 
 const router = express.Router()
 
 router.route('/login')
+.post(userController.login)
+
+import secureRoute from '../middleware/secureRoute'
+import productController from '../controllers/productController'
+
 
 import { createCheckoutSession } from '../lib/stripe'
 
@@ -48,8 +50,5 @@ router.route('/checkout')
   .get(productController.getProduct)
   .post(secureRoute,productController.addProduct)
   .delete(secureRoute,productController.deleteProduct)
-
-
-
 
 export default router

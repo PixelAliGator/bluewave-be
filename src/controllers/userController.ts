@@ -6,7 +6,6 @@ import jwt from "jsonwebtoken";
 import { secret } from "../config/enviorment";
 
 
-
 import userProfileModel from "../models/userProfileModel";
 
 
@@ -22,6 +21,7 @@ async function register(req: Request, res: Response, next: NextFunction) {
     next(e)
   }
 }
+
 
 //!Login registered user
 async function login(req: Request, res: Response, next: NextFunction) {
@@ -67,6 +67,11 @@ async function login(req: Request, res: Response, next: NextFunction) {
   }
 
 
+
+  export default{
+    login
+  }
+
   async function createUserProfile(req: Request, res: Response, next: NextFunction) {
     try {
       //@ts-ignore
@@ -111,4 +116,5 @@ async function login(req: Request, res: Response, next: NextFunction) {
     updateUserProfile
 
   }
+
 
