@@ -9,10 +9,15 @@ import { createCheckoutSession } from '../lib/stripe'
 const router = express.Router()
 
 router.route('/login')
-.post(userController.login)
+  .post(userController.login)
 
 router.route('/register')
-.post(userController.register)
+  .post(userController.register)
+
+router.route('/user')
+  .put(secureRoute, userController.updateUserProfile)
+  .get(secureRoute, userController.getUserProfile)
+  .post(secureRoute, userController.createUserProfile)
 
 
 router.route('/activity')
@@ -21,19 +26,19 @@ router.route('/activity')
   .put(secureRoute, activityController.updateSwimmingActivity)
   .get(secureRoute, activityController.getSwimmingActivity)
 
-  router.route('/goal')
+router.route('/goal')
   .delete(secureRoute, goalsController.deleteGoal)
   .get(secureRoute, goalsController.getGoal)
   .post(secureRoute, goalsController.createGoal)
   .put(secureRoute, goalsController.updateGoal)
 
-  router.route('/product')
+router.route('/product')
   .get(productController.getProduct)
-  .post(secureRoute,productController.addProduct)
-  .delete(secureRoute,productController.deleteProduct)
+  .post(secureRoute, productController.addProduct)
+  .delete(secureRoute, productController.deleteProduct)
 
 
-  router.route('/checkout')
-    .post(createCheckoutSession)
+router.route('/checkout')
+  .post(createCheckoutSession)
 
 export default router
