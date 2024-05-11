@@ -3,7 +3,7 @@ import { promisify } from 'util';
 import { Request, Response, NextFunction } from 'express';
 import User, {userSchemaType} from '../models/userModel';  
 import { NotAuthorized } from '../lib/errors'; 
-import { secret } from '../config/environment';
+import { secret } from '../config/enviorment';
 
 // Typing the promisified function explicitly
 interface VerifyFunction {

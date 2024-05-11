@@ -1,13 +1,25 @@
+import { NextFunction, Request ,Response } from "express";
+import User from "../models/userModel";
+import { userSchemaType } from "../models/userModel";
+import { NotValid } from "../lib/errors";
+import jwt from "jsonwebtoken";
+import { secret } from "../config/enviorment";
+
 //!Login registered user
 async function login(req: Request, res: Response, next: NextFunction) {
     try {
-      console.log(req.body)
-      const user: userSchemaType | null = await  User.findOne({ email: req.body.email });
+      if(req.body == null){
+        throw new NotValid('Body is empty', 400)
+      }
+      const body:userSchemaType = req.body;
+      const email:string = body.email;
+      if(!email) throw new NotValid('Email is required', 400);
+      const user: userSchemaType | null = await  User.findOne({ email: email });
   
       if (!user) {
         throw new NotValid('User not found', 404)
       }
-      const isValidPw = user.validatePassword(req.body.password)
+      const isValidPw = user.validatePassword(body.password)
       if (!isValidPw) {
         throw new NotValid('Wrong password', 400)
       }
@@ -34,4 +46,9 @@ async function login(req: Request, res: Response, next: NextFunction) {
     } catch (e) {
       next(e)
     }
+  }
+
+
+  export default{
+    login
   }

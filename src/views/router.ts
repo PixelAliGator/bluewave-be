@@ -2,8 +2,11 @@ import express from 'express'
 import activityController from '../controllers/activityController'
 import secureRoute from '../middleware/secureRoute'
 import goalsController from '../controllers/goalsController'
+import userController from '../controllers/userController'
 const router = express.Router()
 
+router.route('/login')
+.post(userController.login)
 
 router.route('/activity')
   .delete(secureRoute, activityController.deleteSwimmingActivity)
