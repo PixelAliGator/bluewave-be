@@ -3,6 +3,7 @@ import activityController from '../controllers/activityController'
 import goalsController from '../controllers/goalsController'
 import userController from '../controllers/userController'
 import secureRoute from '../middleware/secureRoute'
+import productController from '../controllers/productController'
 
 const router = express.Router()
 
@@ -25,5 +26,9 @@ router.route('/activity')
   .post(secureRoute, goalsController.createGoal)
   .put(secureRoute, goalsController.updateGoal)
 
+  router.route('/product')
+  .get(productController.getProduct)
+  .post(secureRoute,productController.addProduct)
+  .delete(secureRoute,productController.deleteProduct)
 
 export default router
