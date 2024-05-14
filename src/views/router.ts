@@ -2,22 +2,16 @@ import express from 'express'
 import activityController from '../controllers/activityController'
 import goalsController from '../controllers/goalsController'
 import userController from '../controllers/userController'
-
 import secureRoute from '../middleware/secureRoute'
+import productController from '../controllers/productController'
+import { createCheckoutSession } from '../lib/stripe'
 
 const router = express.Router()
 
 router.route('/login')
+  .post(userController.login)
 
 
-
-.post(userController.login)
-
-import secureRoute from '../middleware/secureRoute'
-import productController from '../controllers/productController'
-
-
-import { createCheckoutSession } from '../lib/stripe'
 
 
 
@@ -27,10 +21,10 @@ router.route('/user')
   .post(secureRoute, userController.createUserProfile)
 
 
-.post(userController.login)
+  .post(userController.login)
 
 router.route('/register')
-.post(userController.register)
+  .post(userController.register)
 
 
 router.route('/activity')
@@ -51,9 +45,9 @@ router.route('/checkout')
   .post(createCheckoutSession)
 
 
-  router.route('/product')
+router.route('/product')
   .get(productController.getProduct)
-  .post(secureRoute,productController.addProduct)
-  .delete(secureRoute,productController.deleteProduct)
+  .post(secureRoute, productController.addProduct)
+  .delete(secureRoute, productController.deleteProduct)
 
 export default router

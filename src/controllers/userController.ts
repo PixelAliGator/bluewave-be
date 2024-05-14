@@ -66,16 +66,6 @@ async function login(req: Request, res: Response, next: NextFunction) {
     }
   }
 
-  export default{
-    login,
-    register
-  }
-
-
-  export default{
-    login
-  }
-
   async function createUserProfile(req: Request, res: Response, next: NextFunction) {
     try {
       //@ts-ignore
